@@ -56,6 +56,7 @@ accelerate launch train_dreambooth_scedit_sdxl.py \
 
 ### Inference
 
+#### Python example:
 ```python
 from diffusers import DiffusionPipeline
 import torch
@@ -72,6 +73,16 @@ unet = load_scedit_into_unet(scedit_model_id, unet)
 # load pipeline
 pipe = DiffusionPipeline.from_pretrained(base_model_id, unet=unet)
 pipe = pipe.to(device="cuda", dtype=torch.float16)
+```
+
+#### Gradio Demo:
+```bash
+MODEL_NAME="stabilityai/stable-diffusion-xl-base-1.0"
+SCEDIT_NAME="mkshing/scedit-trained-xl"
+
+python scripts/gradio.py \
+  --pretrained_model_name_or_path $MODEL_NAME \
+  --scedit_name_or_path $SCEDIT_NAME
 ```
 
 ## TODO
