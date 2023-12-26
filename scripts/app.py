@@ -36,7 +36,7 @@ unet = load_scedit_into_unet(args.scedit_name_or_path, unet)
 pipeline = DiffusionPipeline.from_pretrained(
     args.pretrained_model_name_or_path, unet=unet
 )
-pipeline = pipeline.to(device="cuda", dtype=torch.float16)
+pipeline = pipeline.to(device=device, dtype=torch.float16)
 
 
 def run(prompt: str):
